@@ -6,7 +6,7 @@ using System.Web.Mvc;
 
 namespace askisi_mvc_cinema.Controllers
 {
-    public class HomeController : Controller
+    public class ProvolesController : Controller
     {
         [HttpGet]
         public ActionResult Index()
