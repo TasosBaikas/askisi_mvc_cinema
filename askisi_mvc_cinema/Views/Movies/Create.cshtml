@@ -1,0 +1,78 @@
+﻿@using askisi_mvc_cinema.Models
+@model MovieModel
+
+@{
+    ViewBag.Title = "Create ταινία σελίδα";
+}
+
+@using (Html.BeginForm("Create", "Movies"))
+{
+    @Html.AntiForgeryToken()
+<div class="form-horizontal movies-form">
+    <h1>Create Movie</h1>
+    <hr />
+    @Html.ValidationSummary(true)
+
+    @if (ViewBag.Message != null)
+    {
+        <div class="alert alert-info">
+            @ViewBag.Message
+        </div>
+    }
+
+    <div class="mb-3 form-check">
+        @Html.LabelFor(model => model.NAME, new { @class = "form-label col-lg-2" })
+        <div class="col-lg-10">
+            @Html.TextBoxFor(model => model.NAME, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.NAME, null, new { @class = "form-text" })
+        </div>
+    </div>
+    <div class="mb-3 form-check">
+        @Html.LabelFor(model => model.CONTENT, new { @class = "form-label col-lg-2" })
+        <div class="col-lg-10">
+            @Html.TextAreaFor(model => model.CONTENT, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.CONTENT, null, new { @class = "form-text" })
+        </div>
+    </div>
+    <div class="mb-3 form-check">
+        @Html.LabelFor(model => model.LENGTH, new { @class = "form-label col-lg-2" })
+        <div class="col-lg-10">
+            @Html.TextBoxFor(model => model.LENGTH, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.LENGTH, null, new { @class = "form-text" })
+        </div>
+    </div>
+    <div class="mb-3 form-check">
+        @Html.LabelFor(model => model.TYPE, new { @class = "form-label col-lg-2" })
+        <div class="col-lg-10">
+            @Html.TextBoxFor(model => model.TYPE, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.TYPE, null, new { @class = "form-text" })
+        </div>
+    </div>
+    <div class="mb-3 form-check">
+        @Html.LabelFor(model => model.SUMMARY, new { @class = "form-label col-lg-2" })
+        <div class="col-lg-10">
+            @Html.TextAreaFor(model => model.SUMMARY, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.SUMMARY, null, new { @class = "form-text" })
+        </div>
+    </div>
+    <div class="mb-3 form-check">
+        @Html.LabelFor(model => model.DIRECTOR, new { @class = "form-label col-lg-2" })
+        <div class="col-lg-10">
+            @Html.TextBoxFor(model => model.DIRECTOR, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.DIRECTOR, null, new { @class = "form-text" })
+        </div>
+    </div>
+    <div class="mb-3 form-check">
+        @Html.LabelFor(model => model.USER_USERNAME, new { @class = "form-label col-lg-2" })
+        <div class="col-lg-10">
+            @Html.DropDownListFor(model => model.USER_USERNAME, new SelectList(ViewBag.Users, "USERNAME", "USERNAME"), new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.USER_USERNAME, null, new { @class = "form-text" })
+        </div>
+    </div>
+    <div class="mb-3 form-check">
+        <div class="col-lg-offset-2 col-lg-10">
+            <input type="submit" value="Save" class="btn btn-primary" />
+        </div>
+    </div>
+</div>
+}

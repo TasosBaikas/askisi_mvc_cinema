@@ -1,0 +1,40 @@
+﻿@using askisi_mvc_cinema.Models
+@model IEnumerable<ReservationModel>
+@{
+    ViewBag.Title = "Ιστορική σελίδα κρατήσηων";
+}
+
+<section class="main" id="main">
+    <div class="container mt-2">
+        <div class="row">
+            <div class="col-lg-12 mb-2">
+                <h1>Σπίτι</h1>
+            </div>
+            <div class="col-lg-12">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">Movie ID</th>
+                            <th scope="col">Movie Name</th>
+                            <th scope="col">Cinema ID</th>
+                            <th scope="col">Customer ID</th>
+                            <th scope="col">Seats</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                        <tr>
+                            <th scope="row">@item.PROVOLES_MOVIES_ID</th>
+                            <td>@item.PROVOLES_MOVIES_NAME</td>
+                            <td>@item.PROVOLES_CINEMAS_ID</td>
+                            <td>@item.CUSTOMERS_ID</td>
+                            <td>@item.NUMBER_OF_SEATS</td>
+                        </tr>
+                        }
+                    </tbody>
+                </table>
+                </div>
+        </div>
+    </div>
+</section>
