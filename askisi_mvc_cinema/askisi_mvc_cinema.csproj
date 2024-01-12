@@ -128,6 +128,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\ReservationsController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Controllers\MoviesController.cs" />
     <Compile Include="Controllers\ProvolesController.cs" />
@@ -177,14 +178,14 @@
     <Content Include="Views\Login\Index.cshtml" />
     <Content Include="Views\Provoles\Index.cshtml" />
     <Content Include="Views\Movies\Index.cshtml" />
-    <Content Include="Views\Provoles\History.cshtml" />
-    <Content Include="Views\Provoles\Reserve.cshtml" />
+    <Content Include="Views\Reservations\Index.cshtml" />
     <Content Include="Views\Provoles\Create.cshtml" />
     <Content Include="Views\Provoles\Edit.cshtml" />
     <Content Include="Views\Movies\Create.cshtml" />
     <Content Include="Views\Users\Index.cshtml" />
     <Content Include="Views\Users\Create.cshtml" />
     <Content Include="Views\Users\Edit.cshtml" />
+    <Content Include="Views\Reservations\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

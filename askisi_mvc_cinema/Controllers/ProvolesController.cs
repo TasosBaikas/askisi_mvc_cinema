@@ -13,5 +13,23 @@ namespace askisi_mvc_cinema.Controllers
         {
             return View();
         }
+
+        [HttpGet]
+        public ActionResult Create()
+        {
+            return View();
+        }
+
+        [HttpGet]
+        public ActionResult Edit()
+        {
+            return View();
+        }
+
+        [HttpGet]
+        public ActionResult Reserve()
+        {
+            return View();
+        }
     }
 }

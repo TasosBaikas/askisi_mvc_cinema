@@ -18,11 +18,10 @@ namespace askisi_mvc_cinema.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public ActionResult Index(UserModel login, string returnUrl)
+        public ActionResult Index(UserModel model, string returnUrl)
         {
-            // Access any field by login.FIELD
-            ViewBag.Message = login.USERNAME + '|' + login.PASSWORD;
-            // Check if logged in and return to home page
+            // Access any field you need by model.FIELD
+            // Return in ViewBag.Message if you want to return something in form
             return View();
         }
     }

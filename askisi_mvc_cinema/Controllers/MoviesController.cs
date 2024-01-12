@@ -89,12 +89,13 @@ namespace askisi_mvc_cinema.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(MovieModel newMovie)
+        public ActionResult Create(MovieModel model)
         {
             this.getUsers();
             ViewBag.users = this.CurrentUsers;
 
-            // Access any field you need by newMovie.FIELD
+            // Access any field you need by model.FIELD
+            // Return in ViewBag.Message if you want to return something in form
 
             return View();
         }

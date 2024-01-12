@@ -26,11 +26,18 @@
                             </a>
                             <ul class="dropdown-menu">
                                 @Html.ActionLink("Λίστα", "Index", "Provoles", null, new { @class = "dropdown-item" })
-                                @Html.ActionLink("Κράτηση", "Reserve", "Provoles", null, new { @class = "dropdown-item" })
-                                @Html.ActionLink("Ιστορία", "History", "Provoles", null, new { @class = "dropdown-item" })
                                 <li><hr class="dropdown-divider"></li>
                                 @Html.ActionLink("Νέα", "Create", "Provoles", null, new { @class = "dropdown-item" })
                                 @Html.ActionLink("Αλλαγή", "Edit", "Provoles", null, new { @class = "dropdown-item" })
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Κράτησεις
+                            </a>
+                            <ul class="dropdown-menu">
+                                @Html.ActionLink("Νέα", "Create", "Reservations", null, new { @class = "dropdown-item" })
+                                @Html.ActionLink("Ιστορία", "Index", "Reservations", null, new { @class = "dropdown-item" })
                             </ul>
                         </li>
                         <li class="nav-item dropdown">
