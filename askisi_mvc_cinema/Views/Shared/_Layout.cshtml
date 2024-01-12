@@ -8,79 +8,35 @@
     @Scripts.Render("~/bundles/modernizr")
 </head>
 <body>
-    <header>
-        <nav class="navbar navbar-expand-lg bg-body-tertiary">
-            <div class="container">
-                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
                 </button>
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                        <li class="nav-item">
-                            @Html.ActionLink("Σπίτι", "Index", "Home", null, new { @class = "nav-link" })
-                        </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                Προβολές
-                            </a>
-                            <ul class="dropdown-menu">
-                                @Html.ActionLink("Λίστα", "Index", "Provoles", null, new { @class = "dropdown-item" })
-                                <li><hr class="dropdown-divider"></li>
-                                @Html.ActionLink("Νέα", "Create", "Provoles", null, new { @class = "dropdown-item" })
-                                @Html.ActionLink("Αλλαγή", "Edit", "Provoles", null, new { @class = "dropdown-item" })
-                            </ul>
-                        </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                Κράτησεις
-                            </a>
-                            <ul class="dropdown-menu">
-                                @Html.ActionLink("Νέα", "Create", "Reservations", null, new { @class = "dropdown-item" })
-                                @Html.ActionLink("Ιστορία", "Index", "Reservations", null, new { @class = "dropdown-item" })
-                            </ul>
-                        </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                Ταινίες
-                            </a>
-                            <ul class="dropdown-menu">
-                                @Html.ActionLink("Λίστα", "Index", "Movies", null, new { @class = "dropdown-item" })
-                                @Html.ActionLink("Νέα", "Create", "Movies", null, new { @class = "dropdown-item" })
-                            </ul>
-                        </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                Users
-                            </a>
-                            <ul class="dropdown-menu">
-                                @Html.ActionLink("Λίστα", "Index", "Users", null, new { @class = "dropdown-item" })
-                                @Html.ActionLink("Νέα", "Create", "Users", null, new { @class = "dropdown-item" })
-                                @Html.ActionLink("Αλλαγή", "Edit", "Users", null, new { @class = "dropdown-item" })
-                            </ul>
-                        </li>
-                        <li class="nav-item ml-auto">
-                            @Html.ActionLink("Login", "Index", "Login", null, new { @class = "nav-link" })
-                        </li>
-                    </ul>
-                </div>
+                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
-        </nav>
-    </header>
-    <main>
-
-    </main>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                    <li>@Html.ActionLink("About", "About", "Home")</li>
+                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                </ul>
+            </div>
+        </div>
+    </div>
     <div class="container body-content">
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year</p>
+            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
         </footer>
     </div>
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
-    @Scripts.Render("~/bundles/site")
     @RenderSection("scripts", required: false)
 </body>
 </html>
