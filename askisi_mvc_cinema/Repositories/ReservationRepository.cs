@@ -10,20 +10,20 @@ namespace askisi_mvc_cinema.Repositories
         private readonly YourDbContext _dbContext;
        
 
-        public ReservationRepository(YourDbContext dbContext)
+        public ReservationRepository()
         {
-            _dbContext = dbContext;
+            _dbContext = new YourDbContext();
         }
 
         public ReservationModel GetReservationById(int provoliId, string userUsername)
         {
-            return _dbContext.ReservationModel
+            return _dbContext.ReservationModels
                 .FirstOrDefault(r => r.PROVOLES_ID == provoliId && r.USER_USERNAME == userUsername);
         }
 
         public void AddReservation(ReservationModel reservation)
         {
-            _dbContext.ReservationModel.Add(reservation);
+            _dbContext.ReservationModels.Add(reservation);
             _dbContext.SaveChanges();
         }
 
@@ -38,7 +38,7 @@ namespace askisi_mvc_cinema.Repositories
             var reservationToDelete = GetReservationById(provoliId, userUsername);
             if (reservationToDelete != null)
             {
-                _dbContext.ReservationModel.Remove(reservationToDelete);
+                _dbContext.ReservationModels.Remove(reservationToDelete);
                 _dbContext.SaveChanges();
             }
         }

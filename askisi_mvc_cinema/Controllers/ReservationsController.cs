@@ -39,7 +39,6 @@ namespace askisi_mvc_cinema.Controllers
             var provoliElement = new ProvoliModel
             {
                 MOVIES_ID = 1,
-                MOVIES_NAME = "Godfather",
                 CINEMAS_ID = 1,
                 USER_USERNAME = "TEST"
             };
@@ -50,7 +49,6 @@ namespace askisi_mvc_cinema.Controllers
             var cinemaElement = new CinemaModel
             {
                 ID = 1,
-                NAME = "TEST",
                 SEATS = 160,
                 _3D = "IMAX 3D"
             };
@@ -67,7 +65,6 @@ namespace askisi_mvc_cinema.Controllers
             var provoliElement = new ProvoliModel
             {
                 MOVIES_ID = 1,
-                MOVIES_NAME = "Godfather",
                 CINEMAS_ID = 1,
                 USER_USERNAME = "TEST"
             };

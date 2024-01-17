@@ -11,39 +11,52 @@ namespace askisi_mvc_cinema.Repositories
     {
         private readonly YourDbContext _dbContext;
 
-        public ProvoliRepository(YourDbContext dbContext)
+        public ProvoliRepository()
         {
-            _dbContext = dbContext;
+            _dbContext = new YourDbContext();
         }
 
-        public IEnumerable<ProvoliModel> GetAllProvoli()
+        public List<ProvoliModel> GetAllProvoli()
         {
-            return _dbContext.ProvoliModel.ToList();
+            return _dbContext.ProvoliModels.ToList();
+        }
+
+        public List<ProvoliModel> GetAllProvolisThatAreInSpecificTime(DateTime dateFrom, DateTime dateTo)
+        {
+            return _dbContext.ProvoliModels
+                .Where(provoli => provoli.DATE_FROM >= dateFrom && provoli.DATE_FROM <= dateTo)
+                .Include(p => p.Movie)
+                .Include(p => p.Cinema)
+                .ToList();
         }
 
         public ProvoliModel GetProvoliById(int id)
         {
-            return _dbContext.ProvoliModel.FirstOrDefault(p => p.ID == id);
+            return _dbContext.ProvoliModels.FirstOrDefault(p => p.ID == id);
         }
 
         public void AddProvoli(ProvoliModel provoli)
         {
-            _dbContext.ProvoliModel.Add(provoli);
+            _dbContext.ProvoliModels.Add(provoli);
             _dbContext.SaveChanges();
         }
 
         public void UpdateProvoli(ProvoliModel provoli)
         {
-            //_dbContext.Entry(provoli).State = EntityState.Modified;
-            //_dbContext.SaveChanges();
+            if (provoli != null)
+            {
+                _dbContext.Entry(provoli).State = System.Data.Entity.EntityState.Modified;
+                _dbContext.SaveChanges();
+            }
         }
+
 
         public void DeleteProvoli(int id)
         {
             var provoliToDelete = GetProvoliById(id);
             if (provoliToDelete != null)
             {
-                _dbContext.ProvoliModel.Remove(provoliToDelete);
+                _dbContext.ProvoliModels.Remove(provoliToDelete);
                 _dbContext.SaveChanges();
             }
         }

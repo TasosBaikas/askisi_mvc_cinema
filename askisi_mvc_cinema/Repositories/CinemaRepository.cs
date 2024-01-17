@@ -11,12 +11,12 @@ namespace askisi_mvc_cinema.Repositories
     {
         private readonly YourDbContext _dbContext;
 
-        public CinemaRepository(YourDbContext dbContext)
+        public CinemaRepository()
         {
-            _dbContext = dbContext;
+            _dbContext = new YourDbContext();
         }
 
-        public IEnumerable<CinemaModel> GetAllCinemas()
+        public List<CinemaModel> GetAllCinemas()
         {
             return _dbContext.CinemaModel.ToList();
         }
@@ -46,6 +46,11 @@ namespace askisi_mvc_cinema.Repositories
                 _dbContext.CinemaModel.Remove(cinemaToDelete);
                 _dbContext.SaveChanges();
             }
+        }
+
+        public List<CinemaModel> GetCinemasByIds(List<int> cinemasIds)
+        {
+            return _dbContext.CinemaModel.Where(m => cinemasIds.Contains(m.ID)).ToList();
         }
     }
 }

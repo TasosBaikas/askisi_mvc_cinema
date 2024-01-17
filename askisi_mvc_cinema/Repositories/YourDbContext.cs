@@ -9,21 +9,24 @@ namespace askisi_mvc_cinema.Repositories
 
     using System.Data.Entity;
     using System.Configuration;
+    using System.Data.Entity.ModelConfiguration.Conventions;
 
     public class YourDbContext : DbContext
     {
+
         public YourDbContext() : base("name=YourDbContext")
         {
         }
 
-        // Define your DbSet properties for database entities here.
-        public DbSet<UserModel> UserModel { get; set; }
 
-        public DbSet<ReservationModel> ReservationModel { get; set; }
+        // Define your DbSet properties for database entities here.
+        public DbSet<UserModel> UserModels { get; set; }
+
+        public DbSet<ReservationModel> ReservationModels { get; set; }
 
         public DbSet<CinemaModel> CinemaModel { get; set; }
 
-        public DbSet<ProvoliModel> ProvoliModel { get; set; }
+        public DbSet<ProvoliModel> ProvoliModels { get; set; }
 
         public DbSet<MovieModel> MovieModel { get; set; }
 
@@ -31,15 +34,24 @@ namespace askisi_mvc_cinema.Repositories
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
 
+            modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
+
             // Configuring composite key
             modelBuilder.Entity<ReservationModel>()
                 .HasKey(r => new { r.PROVOLES_ID, r.USER_USERNAME });
 
+
             modelBuilder.Entity<ProvoliModel>()
-                .HasKey(r => new { r.MOVIES_ID, r.CINEMAS_ID });
+                    .HasRequired(p => p.Movie)
+                    .WithMany()
+                    .HasForeignKey(p => p.MOVIES_ID);
 
+            modelBuilder.Entity<ProvoliModel>()
+                        .HasRequired(p => p.Cinema)
+                        .WithMany()
+                        .HasForeignKey(p => p.CINEMAS_ID);
 
-            base.OnModelCreating(modelBuilder); // Call it once at the end
+            base.OnModelCreating(modelBuilder);
         }
 
     }

@@ -12,10 +12,11 @@ namespace askisi_mvc_cinema.Services
     public class AuthenticateUser
     {
 
+
         public UserModel AuthenticateAndReturnUser(string username, string password)
         {
 
-            UserRepository userRepository = new UserRepository(new YourDbContext());
+            UserRepository userRepository = new UserRepository();
 
             UserModel userModel = userRepository.GetUserByUsername(username);
             if (userModel == null)

@@ -11,14 +11,19 @@ namespace askisi_mvc_cinema.Repositories
     {
         private readonly YourDbContext _dbContext;
 
-        public MovieRepository(YourDbContext dbContext)
+        public MovieRepository()
         {
-            _dbContext = dbContext;
+            _dbContext = new YourDbContext();
         }
 
-        public IEnumerable<MovieModel> GetAllMovies()
+        public List<MovieModel> GetAllMovies()
         {
             return _dbContext.MovieModel.ToList();
+        }
+
+        public List<MovieModel> GetMoviesByIds(List<int> ids)
+        {
+            return _dbContext.MovieModel.Where(m => ids.Contains(m.ID)).ToList();
         }
 
         public MovieModel GetMovieById(int id)

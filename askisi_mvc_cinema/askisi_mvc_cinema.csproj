@@ -194,11 +194,13 @@
     </Compile>
     <Compile Include="helpers\GenerateRandomString.cs" />
     <Compile Include="Models\constants\UserRoles.cs" />
+    <Compile Include="Models\notentity\ProvoliRequest.cs" />
     <Compile Include="Models\ReservationModel.cs" />
     <Compile Include="Models\ProvoliModel.cs" />
     <Compile Include="Models\CinemaModel.cs" />
     <Compile Include="Models\MovieModel.cs" />
     <Compile Include="Models\UserModel.cs" />
+    <Compile Include="Models\viewmodels\ProvoliViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\CinemaRepository.cs" />
     <Compile Include="Repositories\MovieRepository.cs" />
@@ -251,6 +253,7 @@
     <Content Include="Views\Users\Edit.cshtml" />
     <Content Include="Views\Reservations\Create.cshtml" />
     <Content Include="Views\Admin\RegisterContentAdmin.cshtml" />
+    <Content Include="Views\Admin\DeleteContentAdmin.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

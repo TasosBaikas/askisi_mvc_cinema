@@ -12,21 +12,29 @@ namespace askisi_mvc_cinema.Repositories
     {
         private readonly YourDbContext _dbContext;
 
-        public UserRepository(YourDbContext dbContext)
+        public UserRepository()
         {
-            _dbContext = dbContext;
+            _dbContext = new YourDbContext();
         }
 
         public UserModel GetUserByUsername(string username)
         {
 
-            return _dbContext.UserModel.Find(username);
+            return _dbContext.UserModels.Find(username);
         }
 
+        public void DeleteUser(UserModel user)
+        {
+            if (user != null)
+            {
+                _dbContext.UserModels.Remove(user);
+                _dbContext.SaveChanges();
+            }
+        }
 
         public void AddUser(UserModel user)
         {
-            _dbContext.UserModel.Add(user);
+            _dbContext.UserModels.Add(user);
             _dbContext.SaveChanges();
         }
 

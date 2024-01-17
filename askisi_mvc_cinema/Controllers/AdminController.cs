@@ -5,6 +5,7 @@ using System.Text;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.WebPages;
+using askisi_mvc_cinema.helpers;
 using askisi_mvc_cinema.Models;
 using askisi_mvc_cinema.Repositories;
 using askisi_mvc_cinema.Services;
@@ -14,7 +15,7 @@ namespace askisi_mvc_cinema.Controllers
     public class AdminController : Controller
     {
         [ActionName("RegisterContentAdmin")]
-        public ActionResult Index()
+        public ActionResult Register()
         {
             return View();
         }
@@ -23,10 +24,10 @@ namespace askisi_mvc_cinema.Controllers
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
         [ActionName("RegisterContentAdmin")]
-        public ActionResult Index(UserModel model, string returnUrl)
+        public ActionResult Register(UserModel model, string returnUrl)
         {
 
-            UserRepository userRepository = new UserRepository(new YourDbContext());
+            UserRepository userRepository = new UserRepository();
             if (model.EMAIL == null || model.EMAIL.IsEmpty())
             {
                 ViewBag.Message = "Δώστε email";
@@ -54,7 +55,9 @@ namespace askisi_mvc_cinema.Controllers
 
             model.ROLE = UserRoles.ContentAdmin;
             model.CREATE_TIME = DateTime.Now;
-            model.SALT = GenerateRandomString(4);
+            model.SALT = GenerateRandomString.Generate(4);
+            model.PASSWORD = AuthenticateUser.HashPassword(model.PASSWORD, model.SALT);
+
             userRepository.AddUser(model);
 
             ViewBag.Message = "Success! content-admin registered!";
@@ -62,20 +65,40 @@ namespace askisi_mvc_cinema.Controllers
             return View();
         }
 
-        public static string GenerateRandomString(int length)
+
+        [ActionName("DeleteContentAdmin")]
+        public ActionResult Delete()
         {
-            Random random = new Random();
+            return View();
+        }
 
-            const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
-            StringBuilder stringBuilder = new StringBuilder(length);
+        [HttpPost]
+        [AllowAnonymous]
+        [ValidateAntiForgeryToken]
+        [ActionName("DeleteContentAdmin")]
+        public ActionResult Delete(UserModel model, string returnUrl)
+        {
 
-            for (int i = 0; i < length; i++)
+            UserRepository userRepository = new UserRepository();
+            if (model.USERNAME == null || model.USERNAME.IsEmpty())
             {
-                int index = random.Next(chars.Length);
-                stringBuilder.Append(chars[index]);
+                ViewBag.Message = "Δώστε username";
+                return View();
             }
 
-            return stringBuilder.ToString();
+            UserModel modelFromDb = userRepository.GetUserByUsername(model.USERNAME);
+            if (modelFromDb == null)
+            {
+                ViewBag.Message = "User does not exist";
+                return View();
+            }
+
+            userRepository.DeleteUser(modelFromDb);
+
+            ViewBag.Message = "content-admin deleted!";
+
+            return View();
         }
+
     }
 }
