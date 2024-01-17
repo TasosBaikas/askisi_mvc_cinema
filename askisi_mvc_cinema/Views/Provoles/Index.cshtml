@@ -1,16 +1,188 @@
-﻿@{
-    ViewBag.Title = "Σπιτική σελίδα";
+﻿@using askisi_mvc_cinema.Models.viewmodels
+
+@model ProvoliViewModel
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+@{
+    ViewBag.Title = "Εμφάνιση προβολών";
 }
+
 
 <section class="main" id="main">
     <div class="container mt-2">
         <div class="row">
             <div class="col-lg-12 mb-2">
-                <h1>Σπίτι</h1>
+                <h1>Λίστα ταινιών</h1>
             </div>
-            <div class="col-lg-12">
-                Provoles home page
+
+            @{
+                if (Model.PROVOLI_LIST.Count == 0)
+                {
+
+                    <div>Δεν υπάρχουν ταινίες για αυτή την ημερομηνία</div>
+                    <div/>
+                }
+                else
+                {
+
+                    <div class="col-lg-12">
+                        <div class="row">
+                            @foreach (var item in Model.PROVOLI_LIST)
+                            {
+                                <div class="col-lg-4">
+                                    <div class="card movie-item">
+                                        <div class="card-body">
+                                            <div class="card-title movie-title-data">
+                                                <span class="h5">@item.Movie.NAME | @item.DATE_FROM.ToString("d/M") (@item.DATE_FROM.ToString("HH:mm") - @item.DATE_TO.ToString("HH:mm"))</span>
+                                            </div>
+                                            <div class="card-title movie-time-from-to">
+                                                <span class="h5"></span>
+                                            </div>
+                                            <a href="#" class="btn btn-primary show-movie"
+                                               data-bs-toggle="modal"
+                                               data-bs-target="#movie-modal"
+                                               data-item-id="@item.ID">Κράτηση</a>
+                                        </div>
+                                        <div class="card-data d-none">
+
+                                            <p><span class="movie-content-data">@item.Movie.NAME</span></p>
+                                            <p><span class="movie-length-data">@item.Cinema.NAME</span></p>
+                                            <p><span class="movie-type-data">@item.NUMBER_OF_SEATS</span></p>
+                                            <p><span class="movie-director-data">@item.NUMBER_OF_FREE_SEATS</span></p>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                    </div>
+
+                }
+            }
+
+        </div>
+    </div>
+    <div class="modal fade" tabindex="-1" aria-labelledby="movie-title" aria-hidden="true" id="movie-modal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="movie-title"></h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>Σινεμά: <span id="movie-length"></span></p>
+                    <p>Συνολικές θέσεις: <span id="movie-type"></span></p>
+                    <p>Ελεύθερες θέσεις: <span id="movie-director"></span></p>
+                </div>
+
+
+                <div class="modal-body">
+                    <label for="numberInput">Δηλώστε τις θέσεις που θέλετε να κλείσετε</label>
+                    <input type="number" id="numberInput" name="SEATS_TO_RESERVE" class="form-control" style="width: auto;" min="1" value="1" />
+                </div>
+
+                <div class="modal-body" id="message-for-reserved-seats"></div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" id="reserveButton">Τελική κράτηση θέσεων</button>
+                </div>
+
+
             </div>
         </div>
     </div>
 </section>
+
+@using (Html.BeginForm("Index", "Provoles", FormMethod.Get, new { id = "provoliForm" }))
+{
+    @Html.HiddenFor(model => model.PROVOLI_REQUEST.DATE_FROM)
+    @Html.HiddenFor(model => model.PROVOLI_REQUEST.DATE_TO)
+
+
+    <!-- Your form fields go here -->
+
+    <button id="prevWeekButton" name="buttonType" value="button1">1 εβδομάδα πριν</button>
+    <button id="nextWeekButton" name="buttonType" value="button2">1 εβδομάδα μετά</button>
+}
+
+<div id="dateRange">From @Model.PROVOLI_REQUEST.DATE_FROM.ToShortDateString() to @Model.PROVOLI_REQUEST.DATE_TO.ToShortDateString()</div>
+
+<script>
+
+           
+    $(document).ready(function () {
+        var startDate = new Date('@Model.PROVOLI_REQUEST.DATE_FROM'); // Initialize with model's DATE_FROM
+        var endDate = new Date('@Model.PROVOLI_REQUEST.DATE_TO');     // Initialize with model's DATE_TO
+
+        $("#prevWeekButton").click(function () {
+            startDate.setDate(startDate.getDate() - 7);
+            endDate.setDate(endDate.getDate() - 7);
+            updateHiddenFields(startDate, endDate);
+
+            $("#provoliForm").submit();
+        });
+
+        $("#nextWeekButton").click(function () {
+            startDate.setDate(startDate.getDate() + 7);
+            endDate.setDate(endDate.getDate() + 7);
+            updateHiddenFields(startDate, endDate);
+
+            $("#provoliForm").submit();
+        });
+
+        function updateHiddenFields(start, end) {
+            // Update the hidden fields with the new values
+            $("#PROVOLI_REQUEST_DATE_FROM").val(start.toISOString());
+            $("#PROVOLI_REQUEST_DATE_TO").val(end.toISOString());
+
+            // Submit the form programmatically
+        }
+
+        var selectedProvoliId = null;
+        $('.show-movie').click(function () {
+            selectedProvoliId = $(this).data('item-id');
+
+            $('#message-for-reserved-seats').text('');
+        });
+
+        var username = localStorage.getItem('username');
+
+        $('#reserveButton').click(function () {
+            var reserveData = {
+                PROVOLES_ID: selectedProvoliId, // Set the PROVOLI_ID value as needed
+                NUMBER_OF_SEATS: $('#numberInput').val(),
+                USER_USERNAME: username // Set the USER_USERNAME value as needed
+            };
+
+            $.ajax({
+                type: 'POST',
+                url: '/Provoles/ReserveSeats', // Update the URL to your controller action
+                data: JSON.stringify(reserveData),
+                contentType: 'application/json',
+                success: function (data) {
+                    // Handle success
+                    var message = data.message;
+
+                    if (data.success) {
+                        $('#message-for-reserved-seats').css('color', 'green');
+
+                        setTimeout(function () {
+                            location.reload();
+                        }, 1300);
+
+                    } else {
+                        $('#message-for-reserved-seats').css('color', 'red');
+                    }
+
+                    $('#message-for-reserved-seats').text(message);
+
+                },
+                error: function (error) {
+                    // Handle error
+                    console.log(error);
+                }
+            });
+        });
+    });
+</script>
+

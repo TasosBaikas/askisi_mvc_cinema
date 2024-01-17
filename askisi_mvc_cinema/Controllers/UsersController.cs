@@ -1,4 +1,7 @@
-﻿using System;
+﻿using askisi_mvc_cinema.Models;
+using askisi_mvc_cinema.Models.notentity;
+using askisi_mvc_cinema.Repositories;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -13,5 +16,8 @@ namespace askisi_mvc_cinema.Controllers
         {
             return View();
         }
+
+       
+        
     }
 }

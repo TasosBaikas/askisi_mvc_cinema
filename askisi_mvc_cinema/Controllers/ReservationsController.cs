@@ -16,20 +16,14 @@ namespace askisi_mvc_cinema.Controllers
 
             var element = new ReservationModel
             {
-                PROVOLES_MOVIES_ID = 1,
-                PROVOLES_MOVIES_NAME = "TEST",
-                PROVOLES_CINEMAS_ID = 1,
-                CUSTOMERS_ID = 1,
+                PROVOLES_ID = 1,
                 NUMBER_OF_SEATS = 1,
                 USER_USERNAME = "TEST"
             };
             elements.Add(element);
             var element1 = new ReservationModel
             {
-                PROVOLES_MOVIES_ID = 2,
-                PROVOLES_MOVIES_NAME = "TEST2",
-                PROVOLES_CINEMAS_ID = 2,
-                CUSTOMERS_ID = 2,
+                PROVOLES_ID = 2,
                 NUMBER_OF_SEATS = 2,
                 USER_USERNAME = "TEST"
             };
@@ -45,7 +39,6 @@ namespace askisi_mvc_cinema.Controllers
             var provoliElement = new ProvoliModel
             {
                 MOVIES_ID = 1,
-                MOVIES_NAME = "Godfather",
                 CINEMAS_ID = 1,
                 USER_USERNAME = "TEST"
             };
@@ -56,7 +49,6 @@ namespace askisi_mvc_cinema.Controllers
             var cinemaElement = new CinemaModel
             {
                 ID = 1,
-                NAME = "TEST",
                 SEATS = 160,
                 _3D = "IMAX 3D"
             };
@@ -73,7 +65,6 @@ namespace askisi_mvc_cinema.Controllers
             var provoliElement = new ProvoliModel
             {
                 MOVIES_ID = 1,
-                MOVIES_NAME = "Godfather",
                 CINEMAS_ID = 1,
                 USER_USERNAME = "TEST"
             };

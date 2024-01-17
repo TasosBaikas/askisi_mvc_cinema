@@ -1,6 +1,8 @@
 ﻿@using askisi_mvc_cinema.Models
 @model UserModel
 
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
 @{
     ViewBag.Title = "Login σελίδα";
 }
@@ -16,7 +18,7 @@
         @if (ViewBag.Message != null)
         {
             <p style="border: 1px solid red">
-                @ViewBag.Message 
+                @ViewBag.Message
             </p>
         }
 
@@ -36,8 +38,26 @@
         </div>
         <div class="mb-3 form-check">
             <div class="col-lg-offset-2 col-lg-10">
-                <input type="submit" value="Save" class="btn btn-primary" />
+                <input type="submit" value="Login" class="btn btn-primary" id="login-button" />
             </div>
         </div>
     </div>
 }
+
+<script>
+
+
+    $(document).ready(function () {
+
+        $('#login-button').click(function () {
+            var username = $('#USERNAME').val();
+
+            // Check if the username is not empty
+            if (username) {
+                // Save the username in local storage
+                localStorage.setItem('username', username);
+            }
+        });
+
+    });
+</script>
