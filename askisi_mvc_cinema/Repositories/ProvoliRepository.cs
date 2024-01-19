@@ -60,5 +60,15 @@ namespace askisi_mvc_cinema.Repositories
                 _dbContext.SaveChanges();
             }
         }
+
+        internal List<ProvoliModel> GetProvolisByIds(List<int> provolesIds)
+        {
+            return _dbContext.ProvoliModels
+                .Where(provoli => provolesIds.Contains(provoli.ID))
+                .Include(p => p.Movie)
+                .Include(p => p.Cinema)
+                .ToList();
+        }
+
     }
 }

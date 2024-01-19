@@ -17,29 +17,20 @@ namespace askisi_mvc_cinema.Repositories
         public YourDbContext() : base("name=YourDbContext")
         {
         }
-
-
         // Define your DbSet properties for database entities here.
         public DbSet<UserModel> UserModels { get; set; }
-
         public DbSet<ReservationModel> ReservationModels { get; set; }
-
         public DbSet<CinemaModel> CinemaModel { get; set; }
-
         public DbSet<ProvoliModel> ProvoliModels { get; set; }
-
         public DbSet<MovieModel> MovieModel { get; set; }
-
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
 
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
-
             // Configuring composite key
             modelBuilder.Entity<ReservationModel>()
                 .HasKey(r => new { r.PROVOLES_ID, r.USER_USERNAME });
-
 
             modelBuilder.Entity<ProvoliModel>()
                     .HasRequired(p => p.Movie)
