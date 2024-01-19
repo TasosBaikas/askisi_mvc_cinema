@@ -80,7 +80,35 @@ namespace askisi_mvc_cinema.Controllers
         }
 
 
-    [HttpGet]
+
+        [HttpGet]
+        public ActionResult History(HistoryViewModel historyViewModel)
+        {
+
+            if (historyViewModel.USER_USERNAME == null)
+            {
+                return View();
+            }
+
+            if (historyViewModel.USER_USERNAME == "TheUserHasNoName...")
+            {
+                return View(historyViewModel);
+            }
+
+            List<ReservationModel> reservationModels = reservationRepository.getReservationsByUsername(historyViewModel.USER_USERNAME);
+
+            List<int> provolesIds = reservationModels.Select(reservation => reservation.PROVOLES_ID).ToList();
+
+            List<ProvoliModel> provoliList = provoliRepository.GetProvolisByIds(provolesIds);
+
+            historyViewModel.RESERVE_SEATS_LIST = reservationModels;
+            historyViewModel.PROVOLI_LIST = provoliList;
+
+            // Pass the modified model to the view
+            return View(historyViewModel);
+        }
+
+        [HttpGet]
         public ActionResult Create()
         {
             return View();
