@@ -34,8 +34,11 @@ namespace askisi_mvc_cinema.Repositories
 
         public void UpdateCinema(CinemaModel cinema)
         {
-            //_dbContext.Entry(cinema).State = EntityState.Modified;
-            //_dbContext.SaveChanges();
+            if (cinema != null)
+            {
+                _dbContext.Entry(cinema).State = System.Data.Entity.EntityState.Modified;
+                _dbContext.SaveChanges();
+            }
         }
 
         public void DeleteCinema(int id)

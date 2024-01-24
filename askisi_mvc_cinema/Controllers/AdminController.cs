@@ -1,4 +1,4 @@
-using System;
+ο»Ώusing System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -30,19 +30,19 @@ namespace askisi_mvc_cinema.Controllers
             UserRepository userRepository = new UserRepository();
             if (model.EMAIL == null || model.EMAIL.IsEmpty())
             {
-                ViewBag.Message = "Δώστε email";
+                ViewBag.Message = "Ξ“ΟΞ¬ΟΟ„Ξµ email";
                 return View();
             }
 
             if (model.USERNAME == null || model.USERNAME.IsEmpty())
             {
-                ViewBag.Message = "Δώστε username";
+                ViewBag.Message = "Ξ“ΟΞ¬ΟΟ„Ξµ username";
                 return View();
             }
 
             if (model.PASSWORD == null || model.PASSWORD.IsEmpty())
             {
-                ViewBag.Message = "Δώστε password";
+                ViewBag.Message = "Ξ“ΟΞ¬ΟΟ„Ξµ password";
                 return View();
             }
 
@@ -82,7 +82,7 @@ namespace askisi_mvc_cinema.Controllers
             UserRepository userRepository = new UserRepository();
             if (model.USERNAME == null || model.USERNAME.IsEmpty())
             {
-                ViewBag.Message = "Δώστε username";
+                ViewBag.Message = "Ξ“ΟΞ¬ΟΟ„Ξµ username";
                 return View();
             }
 

@@ -14,13 +14,14 @@ namespace askisi_mvc_cinema.Controllers
     {
         ProvoliRepository provoliRepository;
         ReservationRepository reservationRepository;
-
-
+        MovieRepository movieRepository;
+        CinemaRepository cinemaRepository;
         public ProvolesController()
         {
             provoliRepository = new ProvoliRepository();
             reservationRepository = new ReservationRepository();
-
+            movieRepository = new MovieRepository();
+            cinemaRepository = new CinemaRepository();
         }
 
         [HttpGet]
@@ -111,18 +112,115 @@ namespace askisi_mvc_cinema.Controllers
         [HttpGet]
         public ActionResult Create()
         {
+            ViewBag.Movies = movieRepository.GetAllMovies();
+            ViewBag.Cinemas = cinemaRepository.GetAllCinemas();
             return View();
         }
 
-        [HttpGet]
-        public ActionResult Edit()
+        [HttpPost]
+        public ActionResult Create(ProvoliModel model)
         {
+            ViewBag.Movies = movieRepository.GetAllMovies();
+            ViewBag.Cinemas = cinemaRepository.GetAllCinemas();
+
+            if (model.MOVIES_ID == null || model.MOVIES_ID == 0)
+            {
+                ViewBag.Message = "Να πάρετε ένα ταινία";
+                return View(model);
+            }
+
+            if (model.CINEMAS_ID == null || model.CINEMAS_ID == 0)
+            {
+                ViewBag.Message = "Να πάρετε ένα cinema";
+                return View(model);
+            }
+
+            if (model.NUMBER_OF_SEATS == null || model.NUMBER_OF_SEATS == 0)
+            {
+                ViewBag.Message = "Γράψτε πόσο θέσεις υπάρχουν";
+                return View(model);
+            }
+
+            model.NUMBER_OF_FREE_SEATS = model.NUMBER_OF_SEATS;
+
+            if (model.DATE_FROM == null)
+            {
+                ViewBag.Message = "Γράψτε date_from";
+                return View(model);
+            }
+
+            if (model.DATE_TO == null)
+            {
+                ViewBag.Message = "Γράψτε date_to";
+                return View(model);
+            }
+
+            model.USER_USERNAME = User.Identity.Name;
+
+            provoliRepository.AddProvoli(model);
+
+            ViewBag.message = "New provoli successfully created!";
+
             return View();
         }
 
+
         [HttpGet]
-        public ActionResult Reserve()
+        public ActionResult Edit(int? id)
         {
+            if (id != null)
+            {
+                ProvoliModel model = provoliRepository.GetProvoliById((int)id);
+                return View(model);
+            }
+            else
+            {
+                ViewBag.Message = "Δεν υπάρχει αυτή η προβολή. Πρέπει να κάνετε η νέα.";
+                return RedirectToAction("Create", "Provoles");
+            }
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit(ProvoliModel model)
+        {
+            ViewBag.Movies = movieRepository.GetAllMovies();
+            ViewBag.Cinemas = cinemaRepository.GetAllCinemas();
+
+            if (model.MOVIES_ID == null || model.MOVIES_ID == 0)
+            {
+                ViewBag.Message = "Να πάρετε ένα ταινία";
+                return View(model);
+            }
+
+            if (model.CINEMAS_ID == null || model.CINEMAS_ID == 0)
+            {
+                ViewBag.Message = "Να πάρετε ένα cinema";
+                return View(model);
+            }
+
+            if (model.NUMBER_OF_SEATS == null || model.NUMBER_OF_SEATS == 0)
+            {
+                ViewBag.Message = "Γράψτε πόσο θέσεις υπάρχουν";
+                return View(model);
+            }
+
+            model.NUMBER_OF_FREE_SEATS = model.NUMBER_OF_SEATS;
+
+            if (model.DATE_FROM == null)
+            {
+                ViewBag.Message = "Γράψτε date_from";
+                return View(model);
+            }
+
+            if (model.DATE_TO == null)
+            {
+                ViewBag.Message = "Γράψτε date_to";
+                return View(model);
+            }
+
+            provoliRepository.UpdateProvoli(model);
+            ViewBag.Message = "Το προβολή άλλαξε!";
             return View();
         }
     }

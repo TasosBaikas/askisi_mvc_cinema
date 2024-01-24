@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - My ASP.NET Application</title>
     @Styles.Render("~/Content/css")
+    @Styles.Render("~/bundles/datecss")
     @Scripts.Render("~/bundles/modernizr")
 </head>
 <body>
@@ -36,8 +37,8 @@
                                 Κράτησεις
                             </a>
                             <ul class="dropdown-menu">
-                                @Html.ActionLink("Νέα", "Create", "Reservations", null, new { @class = "dropdown-item" })
-                                @Html.ActionLink("Ιστορία", "Index", "Reservations", null, new { @class = "dropdown-item" })
+                                @Html.ActionLink("Νέα", "History", "Provoles", null, new { @class = "dropdown-item" })
+                                @Html.ActionLink("Ιστορία", "History", "Provoles", null, new { @class = "dropdown-item" })
                             </ul>
                         </li>
                         <li class="nav-item dropdown">
@@ -51,12 +52,11 @@
                         </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                Users
+                                Content Managers
                             </a>
                             <ul class="dropdown-menu">
-                                @Html.ActionLink("Λίστα", "Index", "Users", null, new { @class = "dropdown-item" })
-                                @Html.ActionLink("Νέα", "Create", "Users", null, new { @class = "dropdown-item" })
-                                @Html.ActionLink("Αλλαγή", "Edit", "Users", null, new { @class = "dropdown-item" })
+                                @Html.ActionLink("Νέα", "RegisterContentAdmin", "Admin", null, new { @class = "dropdown-item" })
+                                @Html.ActionLink("Delete", "DeleteContentAdmin", "Admin", null, new { @class = "dropdown-item" })
                             </ul>
                         </li>
                         <li class="nav-item ml-auto">
@@ -80,6 +80,7 @@
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/datejs")
     @Scripts.Render("~/bundles/site")
     @RenderSection("scripts", required: false)
 </body>

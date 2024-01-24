@@ -3,87 +3,29 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.WebPages;
 using askisi_mvc_cinema.Models;
+using askisi_mvc_cinema.Repositories;
 
 namespace askisi_mvc_cinema.Controllers
 {
     public class MoviesController : Controller
     {
-        private List<UserModel> CurrentUsers = new List<UserModel>();
-
-        private void getUsers()
+        MovieRepository movieRepository;
+        public MoviesController()
         {
-            var elements = new List<UserModel>();
-
-            var element = new UserModel
-            {
-                USERNAME = "test",
-                EMAIL = "test@test.com",
-                PASSWORD = "test",
-                CREATE_TIME = DateTime.Now,
-                SALT = "Very salty",
-                ROLE = "MY ROLE IS AMAZING"
-            };
-            elements.Add(element);
-            var element1 = new UserModel
-            {
-                USERNAME = "test1",
-                EMAIL = "test@test.com",
-                PASSWORD = "test",
-                CREATE_TIME = DateTime.Now,
-                SALT = "Very salty",
-                ROLE = "MY ROLE IS AMAZING"
-            };
-            elements.Add(element1);
-
-            this.CurrentUsers = elements;
+            movieRepository = new MovieRepository();
         }
 
         [HttpGet]
         public ActionResult Index()
         {
-            var elements = new List<MovieModel>();
-
-            var element = new MovieModel
-            {
-                ID = 0,
-                LENGTH = 175,
-                NAME = "The Godfather",
-                SUMMARY = "The story of one man's reluctance to be drawn into the murky family business,and his gradual change through circumstance",
-                TYPE = "Criminal",
-                CONTENT = "The Godfather is a 1972 American epic crime film directed by Francis Ford Coppola, who co-wrote the screenplay with Mario Puzo, based on Puzo's best-selling 1969 novel of the same title."
-            };
-            elements.Add(element);
-            var element2 = new MovieModel
-            {
-                ID = 0,
-                LENGTH = 175,
-                NAME = "The Godfather123",
-                SUMMARY = "The story of one man's reluctance to be drawn into the murky family business,and his gradual change through circumstance",
-                TYPE = "Criminal",
-                CONTENT = "The Godfather is a 1972 American epic crime film directed by Francis Ford Coppola, who co-wrote the screenplay with Mario Puzo, based on Puzo's best-selling 1969 novel of the same title."
-            };
-            elements.Add(element2);
-            var element3 = new MovieModel
-            {
-                ID = 0,
-                LENGTH = 175,
-                NAME = "The Godfather421",
-                SUMMARY = "The story of one man's reluctance to be drawn into the murky family business,and his gradual change through circumstance",
-                TYPE = "Criminal",
-                CONTENT = "The Godfather is a 1972 American epic crime film directed by Francis Ford Coppola, who co-wrote the screenplay with Mario Puzo, based on Puzo's best-selling 1969 novel of the same title."
-            };
-            elements.Add(element3);
-
-            return View(elements);
+            return View(movieRepository.GetAllMovies().OrderBy(q => q.ID));
         }
 
         [HttpGet]
         public ActionResult Create()
         {
-            this.getUsers();
-            ViewBag.users = this.CurrentUsers;
-
             return View();
         }
 
@@ -91,12 +33,108 @@ namespace askisi_mvc_cinema.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(MovieModel model)
         {
-            this.getUsers();
-            ViewBag.users = this.CurrentUsers;
+            if (model.NAME == null || model.NAME.IsEmpty())
+            {
+                ViewBag.Message = "Γράψτε name";
+                return View(model);
+            }
 
-            // Access any field you need by model.FIELD
-            // Return in ViewBag.Message if you want to return something in form
+            if (model.CONTENT == null || model.CONTENT.IsEmpty())
+            {
+                ViewBag.Message = "Γράψτε content";
+                return View(model);
+            }
 
+            if (model.LENGTH == null || model.LENGTH == 0)
+            {
+                ViewBag.Message = "Γράψτε length σε λεπτά";
+                return View(model);
+            }
+
+            if (model.TYPE == null || model.TYPE.IsEmpty())
+            {
+                ViewBag.Message = "Γράψτε type";
+                return View(model);
+            }
+
+            if (model.SUMMARY == null || model.SUMMARY.IsEmpty())
+            {
+                ViewBag.Message = "Γράψτε summary";
+                return View(model);
+            }
+
+            if (model.DIRECTOR == null || model.DIRECTOR.IsEmpty())
+            {
+                ViewBag.Message = "Γράψτε director";
+                return View(model);
+            }
+
+            model.USER_USERNAME = User.Identity.Name;
+
+            movieRepository.AddMovie(model);
+
+            ViewBag.Message = "Η ταινία διμιουργηθηκέ!";
+
+            return View();
+        }
+
+        [HttpGet]
+        public ActionResult Edit(int? id)
+        {
+            if (id != null)
+            {
+                MovieModel model = movieRepository.GetMovieById((int)id);
+                return View(model);
+            }
+            else
+            {
+                ViewBag.Message = "Δεν υπάρχει αυτή η ταινία. Πρέπει να κάνετε η νέα.";
+                return RedirectToAction("Create", "Movies");
+            }
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit(MovieModel model)
+        {
+            if (model.NAME == null || model.NAME.IsEmpty())
+            {
+                ViewBag.Message = "Γράψτε name";
+                return View(model);
+            }
+
+            if (model.CONTENT == null || model.CONTENT.IsEmpty())
+            {
+                ViewBag.Message = "Γράψτε content";
+                return View(model);
+            }
+
+            if (model.LENGTH == null || model.LENGTH == 0)
+            {
+                ViewBag.Message = "Γράψτε length σε λεπτά";
+                return View(model);
+            }
+
+            if (model.TYPE == null || model.TYPE.IsEmpty())
+            {
+                ViewBag.Message = "Γράψτε type";
+                return View(model);
+            }
+
+            if (model.SUMMARY == null || model.SUMMARY.IsEmpty())
+            {
+                ViewBag.Message = "Γράψτε summary";
+                return View(model);
+            }
+
+            if (model.DIRECTOR == null || model.DIRECTOR.IsEmpty())
+            {
+                ViewBag.Message = "Γράψτε director";
+                return View(model);
+            }
+
+            movieRepository.UpdateMovie(model);
+            ViewBag.Message = "Η ταινία άλλαξε!";
             return View();
         }
     }

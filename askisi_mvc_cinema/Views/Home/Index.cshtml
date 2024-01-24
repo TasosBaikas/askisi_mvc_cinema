@@ -12,8 +12,8 @@
                 <h2>Πελάτης σελίδες</h2>
                 <ul>
                     <li>@Html.ActionLink("Λίστα προβολών", "Index", "Provoles")</li>
-                    <li>@Html.ActionLink("Κράτηση προβολής", "Create", "Reservations")</li>
-                    <li>@Html.ActionLink("Ιστορία κρατησηών", "Index", "Reservations")</li>
+                    <li>@Html.ActionLink("Κράτηση προβολής", "History", "Provoles")</li>
+                    <li>@Html.ActionLink("Ιστορία κρατησηών", "History", "Provoles")</li>
                 </ul>
             </div>
             <div class="col-lg-12">
@@ -23,15 +23,13 @@
                     <li>@Html.ActionLink("Αλλαγή προβολής", "Edit", "Provoles")</li>
                     <li>@Html.ActionLink("Λίστα ταινιών", "Index", "Movies")</li>
                     <li>@Html.ActionLink("Νέα ταινία", "Create", "Movies")</li>
-
                 </ul>
             </div>
             <div class="col-lg-12">
                 <h2>Admin σελίδες</h2>
                 <ul>
-                    <li>@Html.ActionLink("Λίστα user", "Index", "Users")</li>
-                    <li>@Html.ActionLink("Νέο user", "Create", "Users")</li>
-                    <li>@Html.ActionLink("Αλλαγή user", "Edit", "Users")</li>
+                    <li>@Html.ActionLink("Νέο content admin", "RegisterContentAdmin", "Admin")</li>
+                    <li>@Html.ActionLink("Delete content admin", "DeleteContentAdmin", "Admin")</li>
                 </ul>
             </div>
         </div>

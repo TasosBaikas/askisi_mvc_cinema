@@ -25,6 +25,13 @@ namespace askisi_mvc_cinema
             bundles.Add(new Bundle("~/bundles/site").Include(
                       "~/Scripts/site.js"));
 
+            bundles.Add(new Bundle("~/bundles/datejs").Include(
+                      "~/Scripts/jquery.plugin.js", "~/Scripts/jquery.datepick.js"
+                      ));
+
+            bundles.Add(new StyleBundle("~/bundles/datecss").Include(
+                      "~/Content/jquery.datepick.css"));
+
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.min.css",
                       "~/Content/site.css"));
