@@ -56,6 +56,13 @@
         </div>
     </div>
     <div class="mb-3 form-check">
+        @Html.LabelFor(model => model.USER_USERNAME, new { @class = "form-label col-lg-2" })
+        <div class="col-lg-10">
+            @Html.DropDownListFor(model => model.USER_USERNAME, new SelectList(ViewBag.Users, "ID", "USERNAME"), new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.USER_USERNAME, null, new { @class = "form-text" })
+        </div>
+    </div>
+    <div class="mb-3 form-check">
         <div class="col-lg-offset-2 col-lg-10">
             <input type="submit" value="Save" class="btn btn-primary" />
         </div>

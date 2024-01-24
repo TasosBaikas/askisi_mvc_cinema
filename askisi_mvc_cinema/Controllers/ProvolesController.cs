@@ -16,12 +16,14 @@ namespace askisi_mvc_cinema.Controllers
         ReservationRepository reservationRepository;
         MovieRepository movieRepository;
         CinemaRepository cinemaRepository;
+        UserRepository userRepository;
         public ProvolesController()
         {
             provoliRepository = new ProvoliRepository();
             reservationRepository = new ReservationRepository();
             movieRepository = new MovieRepository();
             cinemaRepository = new CinemaRepository();
+            userRepository = new UserRepository();
         }
 
         [HttpGet]
@@ -122,6 +124,7 @@ namespace askisi_mvc_cinema.Controllers
         {
             ViewBag.Movies = movieRepository.GetAllMovies();
             ViewBag.Cinemas = cinemaRepository.GetAllCinemas();
+            ViewBag.Users = userRepository.GetAllUsers();
 
             if (model.MOVIES_ID == null || model.MOVIES_ID == 0)
             {
@@ -155,7 +158,11 @@ namespace askisi_mvc_cinema.Controllers
                 return View(model);
             }
 
-            model.USER_USERNAME = User.Identity.Name;
+            if (model.USER_USERNAME == null)
+            {
+                ViewBag.Message = "Να πάρετε ένα user";
+                return View(model);
+            }
 
             provoliRepository.AddProvoli(model);
 
@@ -186,6 +193,7 @@ namespace askisi_mvc_cinema.Controllers
         {
             ViewBag.Movies = movieRepository.GetAllMovies();
             ViewBag.Cinemas = cinemaRepository.GetAllCinemas();
+            ViewBag.Users = userRepository.GetAllUsers();
 
             if (model.MOVIES_ID == null || model.MOVIES_ID == 0)
             {
@@ -216,6 +224,12 @@ namespace askisi_mvc_cinema.Controllers
             if (model.DATE_TO == null)
             {
                 ViewBag.Message = "Γράψτε date_to";
+                return View(model);
+            }
+
+            if (model.USER_USERNAME == null)
+            {
+                ViewBag.Message = "Να πάρετε ένα user";
                 return View(model);
             }
 
