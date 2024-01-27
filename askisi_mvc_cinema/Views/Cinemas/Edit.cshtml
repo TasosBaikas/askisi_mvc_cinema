@@ -1,0 +1,35 @@
+﻿@using askisi_mvc_cinema.Models
+@model CinemaModel
+@{
+    ViewBag.Title = "Edit cinema σελίδα";
+}
+
+@using (Html.BeginForm("Edit", "Cinemas"))
+{
+    @Html.AntiForgeryToken()
+<div class="form-horizontal movies-form">
+    <h1>Create Cinema</h1>
+    <hr />
+    @Html.ValidationSummary(true)
+
+    @if (ViewBag.Message != null)
+    {
+        <div class="alert alert-info">
+            @ViewBag.Message
+        </div>
+    }
+
+    <div class="mb-3 form-check">
+        @Html.LabelFor(model => model.NAME, new { @class = "form-label col-lg-2" })
+        <div class="col-lg-10">
+            @Html.TextBoxFor(model => model.NAME, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.NAME, null, new { @class = "form-text" })
+        </div>
+    </div>
+    <div class="mb-3 form-check">
+        <div class="col-lg-offset-2 col-lg-10">
+            <input type="submit" value="Save" class="btn btn-primary" />
+        </div>
+    </div>
+</div>
+}

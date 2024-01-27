@@ -1,0 +1,31 @@
+﻿@using askisi_mvc_cinema.Models
+@model IEnumerable<CinemaModel>
+@{
+    ViewBag.Title = "Σπιτική σελίδα cinemas";
+}
+
+<section class="main" id="main">
+    <div class="container mt-2">
+        <div class="row">
+            <div class="col-lg-12 mb-2">
+                <h1>Λίστα cinemas</h1>
+            </div>
+            <div class="col-lg-12">
+                <div class="row">
+                @foreach (var item in Model)
+                {
+                    <div class="col-lg-3">
+                        <div class="card movie-item">
+                            <div class="card-body">
+                                <div class="card-title movie-title-data">
+                                    <span class="h5">@item.NAME</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }    
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

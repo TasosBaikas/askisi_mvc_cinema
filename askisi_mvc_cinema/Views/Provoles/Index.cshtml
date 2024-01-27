@@ -11,8 +11,23 @@
 <section class="main" id="main">
     <div class="container mt-2">
         <div class="row">
-            <div class="col-lg-12 mb-2">
-                <h1>Λίστα ταινιών</h1>
+            <div class="col-lg-10 mb-2">
+                <h1>Λίστα προβολών</h1>
+            </div>
+
+                <span id="dateRange">Απο @Model.PROVOLI_REQUEST.DATE_FROM.ToShortDateString() - @Model.PROVOLI_REQUEST.DATE_TO.ToShortDateString()</span>
+
+                @using (Html.BeginForm("Index", "Provoles", FormMethod.Get, new { id = "provoliForm" }))
+                {
+                    @Html.HiddenFor(model => model.PROVOLI_REQUEST.DATE_FROM)
+                    @Html.HiddenFor(model => model.PROVOLI_REQUEST.DATE_TO)
+
+
+                    <!-- Your form fields go here -->
+
+                    <button id="prevWeekButton" name="buttonType" value="button1">1 εβδομάδα πριν</button>
+                    <button id="nextWeekButton" name="buttonType" value="button2">1 εβδομάδα μετά</button>
+                }
             </div>
 
             @{
