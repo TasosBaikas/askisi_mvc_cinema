@@ -33,7 +33,7 @@
                             // Attach a click event handler to the button
                             var usernameFromLocalStorage = localStorage.getItem('username');
 
-                            if (usernameFromLocalStorage === undefined || usernameFromLocalStorage === null) {
+                            if (usernameFromLocalStorage = "" || usernameFromLocalStorage === undefined || usernameFromLocalStorage === null) {
                                 $('#USER_USERNAME').val("TheUserHasNoName...");
                             } else {
                                 $('#USER_USERNAME').val(usernameFromLocalStorage);

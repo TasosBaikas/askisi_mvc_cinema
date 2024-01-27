@@ -1,19 +1,18 @@
 ﻿@{
-    ViewBag.Title = "Σπιτική σελίδα";
+    ViewBag.Title = "Αρχική σελίδα";
 }
 
 <section class="main" id="main">
     <div class="container mt-2">
         <div class="row">
             <div class="col-lg-12 mb-2">
-                <h1>Σπίτι</h1>
+                <h1>Αρχική</h1>
             </div>
             <div class="col-lg-12">
                 <h2>Πελάτης σελίδες</h2>
                 <ul>
                     <li>@Html.ActionLink("Λίστα προβολών", "Index", "Provoles")</li>
-                    <li>@Html.ActionLink("Κράτηση προβολής", "History", "Provoles")</li>
-                    <li>@Html.ActionLink("Ιστορία κρατησηών", "History", "Provoles")</li>
+                    <li>@Html.ActionLink("Ιστορία κρατήσεων", "History", "Provoles")</li>
                 </ul>
             </div>
             <div class="col-lg-12">
@@ -28,7 +27,7 @@
             <div class="col-lg-12">
                 <h2>Admin σελίδες</h2>
                 <ul>
-                    <li>@Html.ActionLink("Νέο content admin", "RegisterContentAdmin", "Admin")</li>
+                    <li>@Html.ActionLink("Δημιουργία content admin", "RegisterContentAdmin", "Admin")</li>
                     <li>@Html.ActionLink("Delete content admin", "DeleteContentAdmin", "Admin")</li>
                 </ul>
             </div>

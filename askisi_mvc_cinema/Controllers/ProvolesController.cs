@@ -65,7 +65,7 @@ namespace askisi_mvc_cinema.Controllers
                 return Json(result);
             }
 
-            ReservationModel reservationIfExist =  reservationRepository.GetReservationById(reservationModel.PROVOLES_ID,reservationModel.USER_USERNAME);
+            ReservationModel reservationIfExist = reservationRepository.GetReservationById(reservationModel.PROVOLES_ID, reservationModel.USER_USERNAME);
             if (reservationIfExist != null)
             {
                 result = new { success = false, message = "Έχετε κάνει ήδη κράτηση" };
@@ -78,7 +78,7 @@ namespace askisi_mvc_cinema.Controllers
             provoliRepository.UpdateProvoli(provoli);
 
 
-            result = new { success = true, message = "Επιτυχής κράτηση"};
+            result = new { success = true, message = "Επιτυχής κράτηση" };
             return Json(result);
         }
 
@@ -88,7 +88,7 @@ namespace askisi_mvc_cinema.Controllers
         public ActionResult History(HistoryViewModel historyViewModel)
         {
 
-            if (historyViewModel.USER_USERNAME == null)
+            if (historyViewModel.USER_USERNAME == null || historyViewModel.USER_USERNAME == "")
             {
                 return View();
             }
@@ -116,6 +116,7 @@ namespace askisi_mvc_cinema.Controllers
         {
             ViewBag.Movies = movieRepository.GetAllMovies();
             ViewBag.Cinemas = cinemaRepository.GetAllCinemas();
+            ViewBag.Users = userRepository.GetAllUsers();
             return View();
         }
 

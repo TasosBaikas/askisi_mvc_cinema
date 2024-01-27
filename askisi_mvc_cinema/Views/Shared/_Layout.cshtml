@@ -12,14 +12,14 @@
     <header>
         <nav class="navbar navbar-expand-lg bg-body-tertiary">
             <div class="container">
-                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                @Html.ActionLink("Cinema Application", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item">
-                            @Html.ActionLink("Σπίτι", "Index", "Home", null, new { @class = "nav-link" })
+                            @Html.ActionLink("Αρχική", "Index", "Home", null, new { @class = "nav-link" })
                         </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -28,8 +28,7 @@
                             <ul class="dropdown-menu">
                                 @Html.ActionLink("Λίστα", "Index", "Provoles", null, new { @class = "dropdown-item" })
                                 <li><hr class="dropdown-divider"></li>
-                                @Html.ActionLink("Νέα", "Create", "Provoles", null, new { @class = "dropdown-item" })
-                                @Html.ActionLink("Αλλαγή", "Edit", "Provoles", null, new { @class = "dropdown-item" })
+                                @Html.ActionLink("Δημιουργία", "Create", "Provoles", null, new { @class = "dropdown-item" })
                             </ul>
                         </li>
                         <li class="nav-item dropdown">
@@ -37,8 +36,7 @@
                                 Κράτησεις
                             </a>
                             <ul class="dropdown-menu">
-                                @Html.ActionLink("Νέα", "History", "Provoles", null, new { @class = "dropdown-item" })
-                                @Html.ActionLink("Ιστορία", "History", "Provoles", null, new { @class = "dropdown-item" })
+                                @Html.ActionLink("Ιστορικό", "History", "Provoles", null, new { @class = "dropdown-item" })
                             </ul>
                         </li>
                         <li class="nav-item dropdown">
@@ -46,8 +44,8 @@
                                 Ταινίες
                             </a>
                             <ul class="dropdown-menu">
-                                @Html.ActionLink("Λίστα", "Index", "Movies", null, new { @class = "dropdown-item" })
-                                @Html.ActionLink("Νέα", "Create", "Movies", null, new { @class = "dropdown-item" })
+                                @Html.ActionLink("Λίστα ταινιών", "Index", "Movies", null, new { @class = "dropdown-item" })
+                                @Html.ActionLink("Δημιουργία", "Create", "Movies", null, new { @class = "dropdown-item" })
                             </ul>
                         </li>
                         <li class="nav-item dropdown">
@@ -55,12 +53,16 @@
                                 Content Managers
                             </a>
                             <ul class="dropdown-menu">
-                                @Html.ActionLink("Νέα", "RegisterContentAdmin", "Admin", null, new { @class = "dropdown-item" })
+                                @Html.ActionLink("Δημιουργία", "RegisterContentAdmin", "Admin", null, new { @class = "dropdown-item" })
                                 @Html.ActionLink("Delete", "DeleteContentAdmin", "Admin", null, new { @class = "dropdown-item" })
                             </ul>
                         </li>
                         <li class="nav-item ml-auto">
                             @Html.ActionLink("Login", "Index", "Login", null, new { @class = "nav-link" })
+                        </li>
+
+                        <li class="nav-item ml-auto">
+                            @Html.ActionLink("Register Πελάτη", "Index", "RegisterClient", null, new { @class = "nav-link" })
                         </li>
                     </ul>
                 </div>

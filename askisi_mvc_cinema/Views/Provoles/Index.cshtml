@@ -30,13 +30,12 @@
                 }
             </div>
 
-
             @{
                 if (Model.PROVOLI_LIST.Count == 0)
                 {
 
                     <div>Δεν υπάρχουν ταινίες για αυτή την ημερομηνία</div>
-                    <div></div>
+                    <div/>
                 }
                 else
                 {
@@ -45,17 +44,14 @@
                         <div class="row">
                             @foreach (var item in Model.PROVOLI_LIST)
                             {
-                                <div class="col-lg-3">
+                                <div class="col-lg-4">
                                     <div class="card movie-item">
                                         <div class="card-body">
                                             <div class="card-title movie-title-data">
-                                                <span class="h7">@item.Movie.NAME</span>
+                                                <span class="h5">@item.Movie.NAME | @item.DATE_FROM.ToString("d/M") (@item.DATE_FROM.ToString("HH:mm") - @item.DATE_TO.ToString("HH:mm"))</span>
                                             </div>
-                                            <div class="card-title movie-date-data">
-                                                <span class="h7">Ημερομηνία: @item.DATE_FROM.ToString("d/M")</span>
-                                            </div>
-                                            <div class="card-title movie-time-data">
-                                                <span class="h7">Ώρα: @item.DATE_FROM.ToString("HH:mm") - @item.DATE_TO.ToString("HH:mm")</span>
+                                            <div class="card-title movie-time-from-to">
+                                                <span class="h5"></span>
                                             </div>
                                             <a href="#" class="btn btn-primary show-movie"
                                                data-bs-toggle="modal"
@@ -111,6 +107,20 @@
         </div>
     </div>
 </section>
+
+@using (Html.BeginForm("Index", "Provoles", FormMethod.Get, new { id = "provoliForm" }))
+{
+    @Html.HiddenFor(model => model.PROVOLI_REQUEST.DATE_FROM)
+    @Html.HiddenFor(model => model.PROVOLI_REQUEST.DATE_TO)
+
+
+    <!-- Your form fields go here -->
+
+    <button id="prevWeekButton" name="buttonType" value="button1">1 εβδομάδα πριν</button>
+    <button id="nextWeekButton" name="buttonType" value="button2">1 εβδομάδα μετά</button>
+}
+
+<div id="dateRange">From @Model.PROVOLI_REQUEST.DATE_FROM.ToShortDateString() to @Model.PROVOLI_REQUEST.DATE_TO.ToShortDateString()</div>
 
 <script>
 
