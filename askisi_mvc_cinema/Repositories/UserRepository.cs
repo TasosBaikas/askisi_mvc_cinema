@@ -17,6 +17,11 @@ namespace askisi_mvc_cinema.Repositories
             _dbContext = new YourDbContext();
         }
 
+        public List<UserModel> GetAllUsers()
+        {
+            return _dbContext.UserModels.ToList();
+        }
+
         public UserModel GetUserByUsername(string username)
         {
 

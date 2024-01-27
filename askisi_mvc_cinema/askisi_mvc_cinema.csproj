@@ -183,8 +183,10 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AdminController.cs" />
-    <Compile Include="Controllers\CinemasController.cs" />
-    <Compile Include="Controllers\RegisterClientController.cs" />
+	 <Compile Include="Controllers\CinemasController.cs" />
+	<Compile Include="Controllers\RegisterClientController.cs" />
+	<Compile Include="Controllers\ReservationsController.cs" />
+    <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Controllers\MoviesController.cs" />
     <Compile Include="Controllers\ProvolesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -251,12 +253,13 @@
     <Content Include="Views\Admin\RegisterContentAdmin.cshtml" />
     <Content Include="Views\Admin\DeleteContentAdmin.cshtml" />
     <Content Include="Views\Provoles\History.cshtml" />
-    <Content Include="Views\Movies\Edit.cshtml" />
-    <Content Include="Views\Provoles\Create.cshtml" />
-    <Content Include="Views\Cinemas\Index.cshtml" />
-    <Content Include="Views\Cinemas\Edit.cshtml" />
-    <Content Include="Views\Cinemas\Create.cshtml" />
-    <Content Include="Views\RegisterClient\Index.cshtml" />
+
+	  <Content Include="Views\Movies\Edit.cshtml" />
+	  <Content Include="Views\Provoles\Create.cshtml" />
+	  <Content Include="Views\Cinemas\Index.cshtml" />
+	  <Content Include="Views\Cinemas\Edit.cshtml" />
+	  <Content Include="Views\Cinemas\Create.cshtml" />
+	  <Content Include="Views\RegisterClient\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
