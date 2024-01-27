@@ -200,7 +200,6 @@
     <Compile Include="Models\CinemaModel.cs" />
     <Compile Include="Models\MovieModel.cs" />
     <Compile Include="Models\UserModel.cs" />
-    <Compile Include="Models\viewmodels\HistoryViewModel.cs" />
     <Compile Include="Models\viewmodels\ProvoliViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\CinemaRepository.cs" />
@@ -258,6 +257,7 @@
     <Content Include="Views\Cinemas\Edit.cshtml" />
     <Content Include="Views\Cinemas\Create.cshtml" />
     <Content Include="Views\RegisterClient\Index.cshtml" />
+
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

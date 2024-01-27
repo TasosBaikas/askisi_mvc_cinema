@@ -4,13 +4,11 @@ using Microsoft.EntityFrameworkCore;
 namespace askisi_mvc_cinema.Repositories
 {
     using askisi_mvc_cinema.Models;
-    using System;
-    using System.Collections.Generic;
 
     public class ReservationRepository
     {
         private readonly YourDbContext _dbContext;
-
+       
 
         public ReservationRepository()
         {
@@ -43,14 +41,6 @@ namespace askisi_mvc_cinema.Repositories
                 _dbContext.ReservationModels.Remove(reservationToDelete);
                 _dbContext.SaveChanges();
             }
-        }
-
-        internal List<ReservationModel> getReservationsByUsername(string username)
-        {
-
-            return _dbContext.ReservationModels
-                .Where(reservation => reservation.USER_USERNAME == username)
-                .ToList();
         }
     }
 }
