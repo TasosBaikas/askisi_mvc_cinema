@@ -183,6 +183,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AdminController.cs" />
+    <Compile Include="Controllers\RegisterClientController.cs" />
     <Compile Include="Controllers\ReservationsController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Controllers\MoviesController.cs" />
@@ -256,6 +257,7 @@
     <Content Include="Views\Admin\RegisterContentAdmin.cshtml" />
     <Content Include="Views\Admin\DeleteContentAdmin.cshtml" />
     <Content Include="Views\Provoles\History.cshtml" />
+    <Content Include="Views\RegisterClient\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
