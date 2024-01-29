@@ -18,4 +18,5 @@
         contentContainer.find('#movie-director').text(elementDirector)
         contentContainer.find('#movie-user').text(elementUser)
     });
+
 });

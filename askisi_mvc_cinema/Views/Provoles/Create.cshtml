@@ -5,68 +5,83 @@
     ViewBag.Title = "Create κράτηση σελίδα";
 }
 
+@section scripts{
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+    <link href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" rel="stylesheet" />
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('.datepick').datepicker({
+                dateFormat: 'yy-mm-dd' // Change this to your desired format
+            });
+        });
+    </script>
+}
+
+
 @using (Html.BeginForm("Create", "Provoles"))
 {
     @Html.AntiForgeryToken()
-<div class="form-horizontal movies-form">
-    <h1>Create Provoli</h1>
-    <hr />
-    @Html.ValidationSummary(true)
+    <div class="form-horizontal movies-form">
+        <h1>Create Provoli</h1>
+        <hr />
+        @Html.ValidationSummary(true)
 
-    @if (ViewBag.Message != null)
-    {
-        <div class="alert alert-info">
-            @ViewBag.Message
-        </div>
-    }
+        @if (ViewBag.Message != null)
+        {
+            <div class="alert alert-info">
+                @ViewBag.Message
+            </div>
+        }
 
-    <div class="mb-3 form-check">
-        @Html.LabelFor(model => model.MOVIES_ID, new { @class = "form-label col-lg-2" })
-        <div class="col-lg-10">
-            @Html.DropDownListFor(model => model.MOVIES_ID, new SelectList(ViewBag.Movies, "ID", "NAME"), new { @class = "form-control" })
-            @Html.ValidationMessageFor(model => model.MOVIES_ID, null, new { @class = "form-text" })
+        <div class="mb-3 form-check">
+            @Html.LabelFor(model => model.MOVIES_ID, new { @class = "form-label col-lg-2" })
+            <div class="col-lg-10">
+                @Html.DropDownListFor(model => model.MOVIES_ID, new SelectList(ViewBag.Movies, "ID", "NAME"), new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.MOVIES_ID, null, new { @class = "form-text" })
+            </div>
         </div>
-    </div>
-    <div class="mb-3 form-check">
-        @Html.LabelFor(model => model.CINEMAS_ID, new { @class = "form-label col-lg-2" })
-        <div class="col-lg-10">
-            @Html.DropDownListFor(model => model.CINEMAS_ID, new SelectList(ViewBag.Cinemas, "ID", "NAME"), new { @class = "form-control" })
-            @Html.ValidationMessageFor(model => model.CINEMAS_ID, null, new { @class = "form-text" })
+        <div class="mb-3 form-check">
+            @Html.LabelFor(model => model.CINEMAS_ID, new { @class = "form-label col-lg-2" })
+            <div class="col-lg-10">
+                @Html.DropDownListFor(model => model.CINEMAS_ID, new SelectList(ViewBag.Cinemas, "ID", "NAME"), new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.CINEMAS_ID, null, new { @class = "form-text" })
+            </div>
         </div>
-    </div>
-    <div class="mb-3 form-check">
-        @Html.LabelFor(model => model.NUMBER_OF_SEATS, new { @class = "form-label col-lg-2" })
-        <div class="col-lg-10">
-            @Html.TextBoxFor(model => model.NUMBER_OF_SEATS, new { @class = "form-control" })
-            @Html.ValidationMessageFor(model => model.NUMBER_OF_SEATS, null, new { @class = "form-text" })
+        <div class="mb-3 form-check">
+            @Html.LabelFor(model => model.NUMBER_OF_SEATS, new { @class = "form-label col-lg-2" })
+            <div class="col-lg-10">
+                @Html.TextBoxFor(model => model.NUMBER_OF_SEATS, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.NUMBER_OF_SEATS, null, new { @class = "form-text" })
+            </div>
         </div>
-    </div>
-    <div class="mb-3 form-check">
-        @Html.LabelFor(model => model.DATE_FROM, new { @class = "form-label col-lg-2" })
-        <div class="col-lg-10">
-            @Html.TextBoxFor(model => model.DATE_FROM, new { @class = "form-control datepick" })
-            @Html.ValidationMessageFor(model => model.DATE_FROM, null, new { @class = "form-text" })
+        <div class="mb-3 form-check">
+            @Html.LabelFor(model => model.DATE_FROM, new { @class = "form-label col-lg-2" })
+            <div class="col-lg-10">
+                @Html.TextBoxFor(model => model.DATE_FROM, new { @class = "form-control datepick" })
+                @Html.ValidationMessageFor(model => model.DATE_FROM, null, new { @class = "form-text" })
+            </div>
         </div>
-    </div>
-    <div class="mb-3 form-check">
-        @Html.LabelFor(model => model.DATE_TO, new { @class = "form-label col-lg-2" })
-        <div class="col-lg-10">
-            @Html.TextBoxFor(model => model.DATE_TO, new { @class = "form-control datepick" })
-            @Html.ValidationMessageFor(model => model.DATE_TO, null, new { @class = "form-text" })
+        <div class="mb-3 form-check">
+            @Html.LabelFor(model => model.DATE_TO, new { @class = "form-label col-lg-2" })
+            <div class="col-lg-10">
+                @Html.TextBoxFor(model => model.DATE_TO, new { @class = "form-control datepick" })
+                @Html.ValidationMessageFor(model => model.DATE_TO, null, new { @class = "form-text" })
+            </div>
         </div>
-    </div>
-    <div class="mb-3 form-check">
-        @Html.LabelFor(model => model.USER_USERNAME, new { @class = "form-label col-lg-2" })
-        <div class="col-lg-10">
-            @Html.DropDownListFor(model => model.USER_USERNAME,new SelectList(ViewBag.Users, "USERNAME", "USERNAME"),"Select a User",new { @class = "form-control" })
+        <div class="mb-3 form-check">
+            @Html.LabelFor(model => model.USER_USERNAME, new { @class = "form-label col-lg-2" })
+            <div class="col-lg-10">
+                @Html.DropDownListFor(model => model.USER_USERNAME, new SelectList(ViewBag.Users, "USERNAME", "USERNAME"), "Select a User", new { @class = "form-control" })
 
-            @Html.ValidationMessageFor(model => model.USER_USERNAME, null, new { @class = "form-text" })
+                @Html.ValidationMessageFor(model => model.USER_USERNAME, null, new { @class = "form-text" })
+            </div>
+        </div>
+        <div class="mb-3 form-check">
+            <div class="col-lg-offset-2 col-lg-10">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
         </div>
     </div>
-    <div class="mb-3 form-check">
-        <div class="col-lg-offset-2 col-lg-10">
-            <input type="submit" value="Save" class="btn btn-primary" />
-        </div>
-    </div>
-</div>
 }

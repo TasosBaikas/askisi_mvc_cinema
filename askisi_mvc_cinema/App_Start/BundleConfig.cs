@@ -14,6 +14,13 @@ namespace askisi_mvc_cinema
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
                         "~/Scripts/jquery.validate*"));
 
+            bundles.Add(new Bundle("~/bundles/datejs").Include(
+                     "~/Scripts/jquery.plugin.js", "~/Scripts/jquery.datepick.js"
+                     ));
+
+            bundles.Add(new StyleBundle("~/bundles/datecss").Include(
+                      "~/Content/jquery.datepick.css"));
+
             // Use the development version of Modernizr to develop with and learn from. Then, when you're
             // ready for production, use the build tool at https://modernizr.com to pick only the tests you need.
             bundles.Add(new ScriptBundle("~/bundles/modernizr").Include(

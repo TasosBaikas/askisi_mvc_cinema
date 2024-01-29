@@ -22,6 +22,7 @@
                 <h1>Εμφάνιση Ιστορικού Κρατήσεων</h1>
             </div>
 
+
             @{
                 if (Model == null)
                 {
@@ -30,10 +31,11 @@
 
                     <script>
                         $(document).ready(function () {
-                            // Attach a click event handler to the button
+
                             var usernameFromLocalStorage = localStorage.getItem('username');
 
-                            if (usernameFromLocalStorage = "" || usernameFromLocalStorage === undefined || usernameFromLocalStorage === null) {
+                            console.log(usernameFromLocalStorage);
+                            if (usernameFromLocalStorage === "" || usernameFromLocalStorage === undefined || usernameFromLocalStorage === null) {
                                 $('#USER_USERNAME').val("TheUserHasNoName...");
                             } else {
                                 $('#USER_USERNAME').val(usernameFromLocalStorage);
@@ -86,7 +88,7 @@
                                                     }
                                                     else
                                                     {
-                                                        
+
                                                         <span class="h7">Έχετε κάνει κράτηση @numberOfSeats θέσεων</span>
 
                                                     }
